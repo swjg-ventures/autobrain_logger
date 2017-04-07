@@ -1,4 +1,6 @@
 require "autobrain_logger/version"
+require "active_support"
+require 'active_support/core_ext'
 #require "logstasher"
 require "logstasher_monkey_patch.rb"
 
@@ -59,7 +61,7 @@ module Log
   end
 
   def self.insert_activity(message, payload = false)
-    if Settings.log_to_db
+    if (defined? (Settings) == "constant") && (Settings.log_to_db)
       Activity.create! data: message ? message : yield, payload: payload
     else
       message.length

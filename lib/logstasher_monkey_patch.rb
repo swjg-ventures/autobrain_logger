@@ -31,12 +31,12 @@ module LogStasher
       tags = Array(additional_fields.delete(:tags) || 'log')
 
       data.merge!(additional_fields)
-      colored_logstash_event =  (build_logstash_event(data, tags).to_json)
-      color = SEVERITY_COLOR_MAP[severity]
-      if Settings.colored_logs == true
-        logger << "\e[#{color}m#{colored_logstash_event} + \n\e[0m"
+      logstash_event =  (build_logstash_event(data, tags).to_json)
+      if (defined? (Settings) == "constant") && (Settings.colored_logs)
+        color = SEVERITY_COLOR_MAP[severity]
+        logger << "\e[#{color}m#{logstash_event} + \n\e[0m"
       else
-        logger << colored_logstash_event + "\n"
+        logger << logstash_event + "\n"
       end
     end
   end

@@ -11,7 +11,6 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Extension of logstasher gem.}
   spec.description   = %q{Extension of logstasher gem.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
